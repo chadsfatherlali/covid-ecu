@@ -11,6 +11,8 @@ import (
 )
 
 func main() {
+	os.Setenv("PORT", "8000")
+
 	port := os.Getenv("PORT")
 
 	if port == "" {
@@ -18,6 +20,12 @@ func main() {
 	}
 
 	router := gin.New()
+
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"status": "ok",
+		})
+	})
 
 	routes.Ocupations(router)
 	routes.Deaths(router)
