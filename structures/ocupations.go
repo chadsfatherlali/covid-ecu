@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-type ocupations struct {
+type occupations struct {
 	Provincia                                 string
 	Canton                                    string
 	Disponibilidad_hospitalizacion            string
@@ -22,7 +22,7 @@ type ocupations struct {
 	Created_at                                string
 }
 
-func Ocupations() []ocupations {
+func Occupations() []occupations {
 	response, err := http.Get("https://raw.githubusercontent.com/andrab/ecuacovid/master/datos_crudos/camas/cantones.csv")
 
 	if err != nil {
@@ -43,11 +43,11 @@ func Ocupations() []ocupations {
 		log.Fatalln(err)
 	}
 
-	var jsonData []ocupations
+	var jsonData []occupations
 
 	for index, record := range csvData {
 		if index > 0 {
-			jsonData = append(jsonData, ocupations{
+			jsonData = append(jsonData, occupations{
 				Provincia:                                 record[0],
 				Canton:                                    record[1],
 				Disponibilidad_hospitalizacion:            record[2],

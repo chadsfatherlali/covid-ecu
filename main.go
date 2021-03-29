@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 
 	"github.com/heroku/go-getting-started/routes"
@@ -14,7 +13,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		port = "8000"
 	}
 
 	router := gin.New()
@@ -25,8 +24,10 @@ func main() {
 		})
 	})
 
-	routes.Ocupations(router)
-	routes.Deaths(router)
+	covidRoutes := router.Group("/api/v1")
+
+	routes.Occupations(covidRoutes)
+	routes.Deaths(covidRoutes)
 
 	router.Run(":" + port)
 }

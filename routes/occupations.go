@@ -6,11 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Deaths(routes *gin.RouterGroup) {
+func Occupations(routes *gin.RouterGroup) {
 	{
-		routes.GET("/deaths", func(c *gin.Context) {
+		routes.GET("/occupations", func(c *gin.Context) {
 			c.JSON(200, gin.H{
-				"data": structures.Deaths(),
+				"data": structures.Occupations(),
 			})
 		})
 	}
